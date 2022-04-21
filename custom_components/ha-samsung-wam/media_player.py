@@ -27,6 +27,15 @@ from homeassistant.components.media_player.browse_media import (
 )
 
 from homeassistant.components.media_player import (
+  SUPPORT_PLAY,
+  SUPPORT_PLAY_MEDIA,
+  SUPPORT_STOP,
+  SUPPORT_TURN_ON,
+  SUPPORT_TURN_OFF,
+  SUPPORT_VOLUME_MUTE,
+  SUPPORT_VOLUME_SET,
+  SUPPORT_SELECT_SOURCE,
+  SUPPORT_BROWSE_MEDIA,
   BrowseMedia,
   MediaPlayerEntity,
   PLATFORM_SCHEMA,
@@ -34,15 +43,6 @@ from homeassistant.components.media_player import (
 
 from homeassistant.components.media_player.const import (
   MEDIA_TYPE_CHANNEL,
-  SUPPORT_TURN_ON,
-  SUPPORT_TURN_OFF,
-  SUPPORT_VOLUME_MUTE,
-  SUPPORT_PLAY_MEDIA,
-  SUPPORT_PLAY,
-  SUPPORT_STOP,
-  SUPPORT_SELECT_SOURCE,
-  SUPPORT_VOLUME_SET,
-  SUPPORT_BROWSE_MEDIA,
   MEDIA_TYPE_MUSIC,
   MEDIA_TYPE_CHANNEL,
   MEDIA_TYPE_MUSIC,
@@ -52,10 +52,13 @@ from homeassistant.components.media_player.const import (
 from homeassistant.const import (
   CONF_NAME,
   CONF_HOST,
-  STATE_IDLE,
-  STATE_PLAYING,
   STATE_ON,
   STATE_OFF
+  STATE_UNAVAILABLE,
+  STATE_PAUSED,
+  STATE_PLAYING,
+  STATE_IDLE,
+  STATE_UNKNOWN,
 )
 
 MULTI_ROOM_SOURCE_TYPE = [
