@@ -14,3 +14,12 @@ media_player:
     power_options: false
     # mac: 5c:49:7d:82:29:91
 ```
+
+### Debug
+
+```
+logger:
+  default: info
+  logs:
+    custom_components.samsung_wam: info
+```
