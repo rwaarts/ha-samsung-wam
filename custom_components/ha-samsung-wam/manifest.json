@@ -1,0 +1,13 @@
+{
+  "domain": "samsung_wam",
+  "name": "SamsungWAM",
+  "version": "1.0.0",
+  "documentation": "https://github.com/rwaarts/ha-samsung-wam",
+  "iot_class": "local_polling",
+  "requirements": [
+    "xmltodict==0.11.0",
+    "websocket-client==0.56.0"
+  ],
+  "codeowners": ["@rwaarts"],
+  "homeassistant": "0.99.3"
+}
