@@ -456,3 +456,4 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
   session = async_get_clientsession(hass)
   api = WAMApi(ip, port, session, hass)
   add_devices([WAMDevice(name, max_volume, power_options ,api)], True)
+
