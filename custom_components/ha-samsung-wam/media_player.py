@@ -12,7 +12,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 _LOGGER = logging.getLogger(__name__)
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 DOMAIN = "samsung_wam"
 
@@ -53,7 +53,7 @@ from homeassistant.const import (
   CONF_NAME,
   CONF_HOST,
   STATE_ON,
-  STATE_OFF
+  STATE_OFF,
   STATE_UNAVAILABLE,
   STATE_PAUSED,
   STATE_PLAYING,
@@ -215,6 +215,33 @@ class WAMApi():
       await self._exec_play('CPM','PlayById', 'cpname', r[1], 'mediaid', 's137149')
     else:
       await self._exec_set('UIC','SetFunc', 'function', source)
+
+  async def get_apinfo(self):
+    res = []
+    result = await self._exec_get('UIC','GetApInfo', '<response result="ok">(.*?)</response>')
+    if result:
+      ssid = re.findall('<ssid>(.*?)</ssid>',result[0])[0]
+      mac  = re.findall('<mac>(.*?)</mac>',result[0])[0]
+      rssi  = re.findall('<rssi>(.*?)</rssi>',result[0])[0]
+      ch  = re.findall('<ch>(.*?)</ch>',result[0])[0]
+      contype  = re.findall('<connectiontype>(.*?)</connectiontype>',result[0])[0]
+      wifidirectssid  = re.findall('<wifidirectssid>(.*?)</wifidirectssid>',result[0])[0]
+      res.append(ssid)
+      res.append(mac)
+      res.append(ch)
+      return res
+    return None
+
+  async def get_softwareinfo(self):
+    res = []
+    result = await self._exec_get('UIC','GetSoftwareVersion', '<response result="ok">(.*?)</response>')
+    if result:
+      version = re.findall('<version>(.*?)</version>',result[0])[0]
+      display  = re.findall('<displayversion>(.*?)</displayversion>',result[0])[0]
+      res.append('Version: {0}'.format(version))
+      res.append('Display: {0}'.format(display))
+      return res
+    return None
 
 class WAMDevice(MediaPlayerEntity):
   """Representation of a Samsung MultiRoom device."""
