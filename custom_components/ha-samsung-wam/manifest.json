@@ -1,7 +1,7 @@
 {
   "domain": "samsung_wam",
   "name": "SamsungWAM",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "documentation": "https://github.com/rwaarts/ha-samsung-wam",
   "iot_class": "local_polling",
   "requirements": [
